@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - V-Agent Dark</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-main: #ffffff;
+            --text-muted: #a1a1a1;
+            --v-teal: #24525a; 
+            --v-orange: #f28b55;
+            --line-color: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- 头部管理区 --- */
+        .admin-header {
+            width: 100%;
+            max-width: 600px;
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        h1 { font-size: 3.5rem; margin: 0; font-weight: 700; letter-spacing: -2px; }
+
+        .upload-section {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: #111;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        /* 鼠标悬停标题展开 */
+        .admin-header:hover .upload-section {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #222;
+        }
+
+        .upload-section input, .upload-section textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .upload-btn {
+            background: var(--v-teal);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* --- 时间轴部分 --- */
+        .timeline { 
+            position: relative; 
+            max-width: 850px; 
+            width: 100%; 
+            padding: 40px 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--line-color);
+        }
+
+        .changelog-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 80px;
+            display: flex;
+            gap: 40px;
+        }
+
+        /* 时间轴圆点 */
+        .changelog-item::after {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 14px;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-color);
+            border: 2px solid var(--v-teal);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .video-wrapper {
+            flex: 1;
+            max-width: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+        video { width: 100%; height: 100%; object-fit: cover; }
+
+        .content-box { flex: 1.2; position: relative; }
+
+        .meta-info { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+
+        .badge {
+            background: rgba(242, 139, 85, 0.1);
+            color: var(--v-orange);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border: 1px solid var(--v-orange);
+        }
+
+        /* 关键：可编辑日期 */
+        .date-label { 
+            color: var(--text-muted); 
+            font-size: 0.85rem; 
+            cursor: text;
+            padding: 2px 4px;
+        }
+        .date-label:hover { background: #222; border-radius: 4px; }
+
+        .item-title { font-size: 1.5rem; margin: 8px 0; outline: none; }
+        .item-desc { color: var(--text-muted); line-height: 1.5; font-size: 0.9rem; outline: none; }
+
+        .del-btn {
+            position: absolute;
+            right: 0;
+            top: -20px;
+            color: #444;
+            font-size: 0.7rem;
+            cursor: pointer;
+            opacity: 0;
+        }
+        .changelog-item:hover .del-btn { opacity: 1; }
+
+        @media (max-width: 750px) {
+            .changelog-item { flex-direction: column; padding-left: 60px; }
+            .timeline::before { left: 30px; }
+            .changelog-item::after { left: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1>Changelog</h1>
+        <div class="upload-section">
+            <input type="text" id="vTitle" placeholder="更新标题...">
+            <textarea id="vDesc" rows="2" placeholder="功能描述..."></textarea>
+            <input type="file" id="vFile" accept="video/*">
+            <button class="upload-btn" onclick="addPost()">发布</button>
+        </div>
+    </header>
+
+    <div class="timeline" id="mainTimeline">
+        <div class="changelog-item">
+            <div class="video-wrapper">
+                <video src="https://www.w3schools.com/html/mov_bbb.mp4" loop autoplay muted playsinline></video>
+            </div>
+            <div class="content-box">
+                <span class="del-btn" onclick="this.closest('.changelog-item').remove()">[DELETE]</span>
+                <div class="meta-info">
+                    <span class="badge">RELEASE</span>
+                    <span class="date-label" contenteditable="true">January 7, 2026</span>
+                </div>
+                <h2 class="item-title" contenteditable="true">智能视频分析接口上线</h2>
+                <p class="item-desc" contenteditable="true">支持通过深青色主题 UI 管理更新日志，日期现在可以点击直接修改。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addPost() {
+            const title = document.getElementById('vTitle').value;
+            const desc = document.getElementById('vDesc').value;
+            const file = document.getElementById('vFile').files[0];
+
+            if (!title || !file) {
+                alert("标题和视频不能为空");
+                return;
+            }
+
+            const url = URL.createObjectURL(file);
+            const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const html = `
+                <div class="changelog-item">
+                    <div class="video-wrapper">
+                        <video src="${url}" loop autoplay muted playsinline></video>
+                    </div>
+                    <div class="content-box">
+                        <span class="del-btn" onclick="this.closest('.changelog-item').remove()">[DELETE]</span>
+                        <div class="meta-info">
+                            <span class="badge">RELEASE</span>
+                            <span class="date-label" contenteditable="true">${date}</span>
+                        </div>
+                        <h2 class="item-title" contenteditable="true">${title}</h2>
+                        <p class="item-desc" contenteditable="true">${desc}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('mainTimeline').insertAdjacentHTML('afterbegin', html);
+            
+            // 重置输入框
+            document.getElementById('vTitle').value = '';
+            document.getElementById('vDesc').value = '';
+            document.getElementById('vFile').value = '';
+        }
+    </script>
+</body>
+</html>
