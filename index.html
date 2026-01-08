@@ -105,6 +105,31 @@
         .title { font-size: 1.8rem; margin: 15px 0 10px; letter-spacing: -0.5px; }
         .desc { color: var(--text-muted); line-height: 1.6; font-size: 1rem; margin: 0; }
 
+                /* --- 小功能组件样式 --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 保持两列 */
+            gap: 12px;
+            margin-top: 25px; /* 与上方描述保持距离 */
+        }
+        .feature-pill {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .pill-label {
+            color: var(--v-teal);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
         @media (max-width: 750px) {
             .timeline::before, .dot-marker { left: 30px; }
             .item-content { padding-left: 50px; flex-direction: column; gap: 20px; }
@@ -116,77 +141,168 @@
 
     <div class="timeline">
         
-        <div class="changelog-item">
-            <div class="dot-marker"><div class="dot"></div></div>
-            <div class="item-content">
-                <div class="video-wrapper">
-                    <video src="Lark20260107-145020.mp4" loop autoplay muted playsinline></video>
-                </div>
-                <div class="text-box">
-                    <div><span class="badge">RELEASE</span><span class="date">DEC 30, 2025</span></div>
-                    <h2 class="title"> 思考状态优化 </h2>
-                    <p class="desc">丰富模型思考状态的呈现方式，让模型思考进展更加清晰。</p>
-                </div>
+<div class="changelog-item">
+    <div class="dot-marker"><div class="dot"></div></div>
+    
+    <div class="item-content" style="display: flex; flex-direction: column; gap: 30px;">
+        
+        <div class="main-row" style="display: flex; gap: 40px; align-items: flex-start;">
+            <div class="video-wrapper" style="flex: 1; max-width: 420px;">
+                <video src="Lark20260107-145020.mp4" loop autoplay muted playsinline></video>
             </div>
-        </div>
 
-        <div class="changelog-item">
-            <div class="dot-marker"><div class="dot"></div></div>
-            <div class="item-content">
-                <div class="video-wrapper">
-                    <video src="Lark20260107-145103.mp4" loop autoplay muted playsinline></video>
-                </div>
-                <div class="text-box">
-                    <div><span class="badge">ENHANCEMENT</span><span class="date">DEC 5, 2025</span></div>
-                    <h2 class="title"> 多轮对话稳定性增强 </h2>
-                    <p class="desc">引入全新的上下文管理机制，大幅提升交易助手在长对话中的逻辑一致性，有效减少跨轮次指令混淆。</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="changelog-item">
-            <div class="dot-marker"><div class="dot"></div></div>
-            <div class="item-content">
-                <div class="video-wrapper">
-                    <video src="Lark20260107-145123.mp4" loop autoplay muted playsinline></video>
-                </div>
-                <div class="text-box">
-                    <div><span class="badge">RELEASE</span><span class="date">NOV 28, 2025</span></div>
-                    <h2 class="title">外部链接集成</h2>
-                    <p class="desc">优化 AAPL 等资产的购买流程，实现从指令识别到 Vantage 交易页面的无缝跳转，缩短操作路径。</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="changelog-item">
-            <div class="dot-marker"><div class="dot"></div></div>
-            <div class="item-content">
-                <div class="video-wrapper">
-                    <video src="Lark20260107-145135.mp4" loop autoplay muted playsinline></video>
-                </div>
-                <div class="text-box">
-                    <div><span class="badge">RELEASE</span><span class="date">NOV 26, 2025</span></div>
-                    <h2 class="title">身份验证与智能追问上线</h2>
-                    <p class="desc">部署用户身份验证系统（Auth）并集成建议追问功能（Follow-up），提供更个性化且连贯的服务体验。</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="changelog-item">
-            <div class="dot-marker"><div class="dot"></div></div>
-            <div class="item-content">
-                <div class="video-wrapper">
-                    <video src="Lark20260107-145152.mp4" loop autoplay muted playsinline></video>
-                </div>
-                <div class="text-box">
-                    <div><span class="badge">RELEASE</span><span class="date">NOV 06, 2025</span></div>
-                    <h2 class="title">24H 实时新闻动态关联</h2>
-                    <p class="desc">基于 24 小时内最新资讯生成建议查询词（Production 阶段），确保交易洞察与全球市场波动实时同步。</p>
-                </div>
+            <div class="text-box" style="flex: 1.2;">
+                <div><span class="badge">RELEASE</span><span class="date">DEC 30, 2025</span></div>
+                <h2 class="title">思考状态优化</h2>
+                <p class="desc">丰富模型思考状态的呈现方式，让模型思考进展更加清晰。</p>
             </div>
         </div>
 
     </div>
+</div>
+
+<div class="changelog-item">
+    <div class="dot-marker"><div class="dot"></div></div>
+    
+    <div class="item-content" style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
+        
+        <div class="main-row" style="display: flex; gap: 40px; align-items: flex-start; width: 100%;">
+            <div class="video-wrapper" style="flex: 1; max-width: 420px;">
+                <video src="Lark20260107-145103.mp4" loop autoplay muted playsinline style="width: 100%; border-radius: 12px;"></video>
+            </div>
+
+            <div class="text-box" style="flex: 1.2;">
+                <div><span class="badge">UPDATE</span><span class="date">DEC 5, 2025</span></div>
+                <h2 class="title">多轮对话稳定性增强</h2>
+                <p class="desc">
+                    深度优化长上下文的理解能力，确保在复杂的金融调研过程中，AI 能够保持逻辑的一致性与稳定性。
+                </p>
+            </div>
+        </div>
+
+        <div class="feature-grid" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <div class="feature-pill">
+                <span class="pill-label">STABILITY</span>
+                多轮对话稳定性增强：优化 Context 窗口管理，长对话逻辑更稳健。
+            </div>
+            <div class="feature-pill">
+                <span class="pill-label">UI POLISH</span>
+                思考状态优化：丰富模型思考过程的呈现方式，让进展更加清晰透明。
+            </div>
+            <div class="feature-pill">
+                <span class="pill-label">LANG</span>
+                Multi-language Reply：支持全球主流语言实时回复，实现跨语言交互。
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="changelog-item">
+    <div class="dot-marker"><div class="dot"></div></div>
+    
+    <div class="item-content" style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
+        
+        <div class="main-row" style="display: flex; gap: 40px; align-items: flex-start; width: 100%;">
+            <div class="video-wrapper" style="flex: 1; max-width: 420px;">
+                <video src="Lark20260107-145123.mp4" loop autoplay muted playsinline style="width: 100%; border-radius: 12px;"></video>
+            </div>
+
+            <div class="text-box" style="flex: 1.2;">
+                <div><span class="badge">UPDATE</span><span class="date">NOV 28, 2025</span></div>
+                <h2 class="title">外部链接集成与智能交易</h2>
+                <p class="desc">
+                    通过深度集成外部交易协议，打通了从市场分析到实际操作的最后一步。
+                    用户可直接在对话流中管理订单，实现分析与交易的无缝切换。
+                </p>
+            </div>
+        </div>
+
+        <div class="feature-grid" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <div class="feature-pill">
+                <span class="pill-label">TRADING</span>
+                Chat to Trade：直接在对话中完成下单交易指令。
+            </div>
+            <div class="feature-pill">
+                <span class="pill-label">ORDER</span>
+                订单查询：快速搜索并调取最新的历史订单记录。
+            </div>
+            <div class="feature-pill">
+                <span class="pill-label">LINK</span>
+                外部链接集成：支持第三方金融工具与交易页面的深度嵌入。
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="changelog-item">
+    <div class="dot-marker"><div class="dot"></div></div>
+    
+    <div class="item-content" style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
+        
+        <div class="main-row" style="display: flex; gap: 40px; align-items: flex-start; width: 100%;">
+            <div class="video-wrapper" style="flex: 1; max-width: 420px;">
+                <video src="Lark20260107-145135.mp4" loop autoplay muted playsinline style="width: 100%; border-radius: 12px;"></video>
+            </div>
+
+            <div class="text-box" style="flex: 1.2;">
+                <div><span class="badge">UPDATE</span><span class="date">NOV 26, 2025</span></div>
+                <h2 class="title">身份验证与智能追问上线</h2>
+                <p class="desc">部署用户身份验证系统（Auth）并集成建议追问功能（Follow-up），提供更个性化且连贯的服务体验。</p>
+            </div>
+        </div>
+
+        <div class="feature-grid" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <div class="feature-pill">
+                <span class="pill-label">SECURITY</span>
+                身份验证系统：上线 Auth 模块，保障用户行为数据安全与个性化存储。
+            </div>
+            <div class="feature-pill">
+                <span class="pill-label">PROMPT</span>
+                Recommendation questions：基于当前对话内容，智能生成下一步推荐问题。
+            </div>
+            <div class="feature-pill">
+                <span class="pill-label">CONTEXT</span>
+                Related questions：自动关联历史交易或查询，提供更有深度的相关问题引导。
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="changelog-item">
+    <div class="dot-marker"><div class="dot"></div></div>
+    
+    <div class="item-content" style="display: flex; flex-direction: column; gap: 30px; width: 100%;">
+        
+        <div class="main-row" style="display: flex; gap: 40px; align-items: flex-start; width: 100%;">
+            <div class="video-wrapper" style="flex: 1; max-width: 420px;">
+                <video src="Lark20260107-145152.mp4" loop autoplay muted playsinline style="width: 100%; border-radius: 12px;"></video>
+            </div>
+
+            <div class="text-box" style="flex: 1.2;">
+                <div><span class="badge">RELEASE</span><span class="date">NOV 06, 2025</span></div>
+                <h2 class="title">V-agent 基座版本发布</h2>
+                <p class="desc">我们构建了一个深度集成金融数据分析、实时行情追踪与智能新闻处理能力的底层系统，
+                    旨在为用户提供从数据获取到逻辑洞察的端到端全自动化体验。</p>
+            </div>
+        </div>
+
+        <div class="feature-grid" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+            <div class="feature-pill"><span class="pill-label">VISUAL</span>Chart Generation：数据自动转化为可视化图形</div>
+            <div class="feature-pill"><span class="pill-label">TECH</span>Technical Metrics：技术面指标计算与图形呈现</div>
+            <div class="feature-pill"><span class="pill-label">AI</span>LLM Analytic Skills：基于大模型的数据逻辑分析</div>
+            <div class="feature-pill"><span class="pill-label">TOOL</span>Basic Calculator：集成通用基础计算工具</div>
+            <div class="feature-pill"><span class="pill-label">MARKET</span>支持 Gold, Crypto, Stock 实时与历史报价查询</div>
+            <div class="feature-pill"><span class="pill-label">NEWS</span>Basic News Tool：解决链接重定向，直接阅读原文</div>
+            <div class="feature-pill"><span class="pill-label">SEARCH</span>Web Search 降级机制：实时互联网数据补充</div>
+            <div class="feature-pill"><span class="pill-label">AGENT</span>News Agent：智能新闻聚合与上下文深度关联</div>
+            <div class="feature-pill"><span class="pill-label">DATA</span>Data Selection：专注于对获取数据的处理与初步筛选</div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
